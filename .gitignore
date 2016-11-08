@@ -1,0 +1,9 @@
+.idea/*
+.settings/*
+bin/*
+out/*
+.classpath
+.project
+Project3.iml
+src.zip
+cost.csv
