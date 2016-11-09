@@ -18,7 +18,7 @@ public class NaiveAssigner implements Assigner{
 	public void assign(Instance inst, ArrayList<Ambulance> ambulances){
 		ArrayList<Site> sites = inst.getSites();
 		for(int i=0; i<ambulances.size(); i++){
-			sites.get(i%sites.size()).addAmbulance(ambulances.get(i));
+			sites.get(i % sites.size()).addAmbulance(ambulances.get(i));
 		}
 	}
 }
