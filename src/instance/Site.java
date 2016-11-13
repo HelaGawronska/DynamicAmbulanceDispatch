@@ -9,7 +9,7 @@ public class Site {
 	
 	private double x;
 	private double y;
-	private ArrayList<Ambulance> ambulances = new ArrayList<Ambulance>();
+	public ArrayList<Ambulance> ambulances = new ArrayList<Ambulance>();
 	
 	// For visiualization
 	private double stdDev = 4.4;
@@ -133,7 +133,7 @@ public class Site {
 	 * @return The ambulance that will be available the earliest
 	 */
 	public Ambulance getFirstAvailable(){
-		double ready = Double.MAX_VALUE;
+		double ready = Double.MAX_VALUE; // FIXME: 11/13/16 WTF????
 		int index = -1;
 		for(int i=0; i< ambulances.size(); i++){
 			Ambulance a = ambulances.get(i);
@@ -143,7 +143,7 @@ public class Site {
 			}
 		}
 		if(index==-1){
-			System.err.println("Attempted to get fist available ambulance from asite without ambulances");
+			System.err.println("Attempted to get fist available ambulance from a site without ambulances");
 			System.exit(1);
 		}
 		return ambulances.get(index);
@@ -159,4 +159,26 @@ public class Site {
 	public String toString(){
 		return "Zone ("+myFormatter.format(x)+","+myFormatter.format(y)+")";
 	}
+
+
+	////////////////////////// 10.11
+    public double prepertness(double time) {
+        int availableAmb = 0;
+        for (Ambulance a: ambulances) {
+            if(a.getReadyTime() <= time) {
+                availableAmb += 1;
+            }
+        }
+
+        return availableAmb/ambulances.size();
+    }
+
+
+    // only compare id !
+	public boolean equalTo(Site s) {
+        if (this.id == s.id)  {
+            return true;
+        } else  return false;
+	}
+
 }

@@ -1,6 +1,8 @@
 package instance;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Call implements Comparable<Call>{
 	private double x;
@@ -8,6 +10,10 @@ public class Call implements Comparable<Call>{
 	private double callTime;
 	private int prio;
 	private static final DecimalFormat myFormatter = new DecimalFormat("###.##");
+
+	public ArrayList<Tabu> relationToSites = new ArrayList<>();
+
+
 	
 	public Call(double x, double y, double time, int prio){
 		this.x = x;
@@ -18,6 +24,9 @@ public class Call implements Comparable<Call>{
 			System.exit(1);
 		}
 		this.prio = prio;
+        for (int i = 0; i <= 6; i++) {
+
+        }
 	}
 	
 	/**
@@ -60,4 +69,29 @@ public class Call implements Comparable<Call>{
 	public int compareTo(Call o) {
 		return ((Double)callTime).compareTo(o.getCallTime());
 	}
+
+
+
+///////////////// 11.11 ///////////////////////////////////////////
+
+
+    public void setRelationToSites(ArrayList<Site> sites) {
+        for (Site s: sites) {
+            this.relationToSites.add(new Tabu(s,this));
+        }
+        Collections.sort(relationToSites);
+    }
+
+	public int findBestAmbulance(ArrayList<Site> sites) {
+        double bestTime = 10000;
+        int bestId = 0;
+        for (Site s: sites) {
+            if (s.distanceTo(this)/80 + s.getFirstAvailableTime() < bestTime) {
+                bestTime = s.distanceTo(this)/80 + s.getFirstAvailableTime();
+                bestId = s.getId();
+            }
+        }
+        return bestId;
+    }
+
 }

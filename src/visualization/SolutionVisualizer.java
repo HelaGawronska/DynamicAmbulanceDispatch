@@ -86,14 +86,21 @@ public class SolutionVisualizer {
 			StdDraw.setPenColor( new Color(val, val, val));
 			StdDraw.filledCircle(z.getX(), z.getY(), 80*(10.0/60.0));
 		}
-
-		// here rings are drown...
-		for(Site z : in.getSites()){
+		
+		for(int y=0; y<=in.getSites().size()-1; y++){
+			Site z=in.getSites().get(y);
 			StdDraw.setPenColor(colors.get(z.getId()));
 			StdDraw.filledSquare(z.getX(), z.getY(), 3*scale);
 			StdDraw.circle(z.getX(), z.getY(), z.getStdDev());
 			StdDraw.circle(z.getX(), z.getY(), 2*z.getStdDev());
 			StdDraw.circle(z.getX(), z.getY(), 3*z.getStdDev());
+
+
+			StdDraw.setPenColor(colors.get(in.getSites().get(0).getId()));
+			String label= "            " + y;
+
+			//todo lory
+			StdDraw.text(z.getX(), z.getY(), label, 0.0);
 		}
 		
 		for(Ambulance a : ams){

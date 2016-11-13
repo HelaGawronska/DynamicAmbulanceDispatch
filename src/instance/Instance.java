@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Instance {
 	// The random generator used in all distributions
-	public static Random rand = new Random();
+	public static Random rand = new Random(1); // TODO: 11/10/16 remove seed
 	
 	// Instance specific data
 	private ArrayList<Call> calls = new ArrayList<Call>();

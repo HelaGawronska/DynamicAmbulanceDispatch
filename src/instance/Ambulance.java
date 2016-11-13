@@ -16,6 +16,8 @@ public class Ambulance {
 	private final double serviceTime = 0.1;
 	private final double relocateDelay = 0.0/60.0;
 	private double relocatedBy = -1;
+
+    public boolean isFree = true;
 	
 	public Ambulance(){
 		id = maxId++;
@@ -119,4 +121,17 @@ public class Ambulance {
 	public int getId(){
 		return id;
 	}
+
+
+    public void setIsFree(double time) {
+        if (this.getReadyTime() <= time) {
+            this.isFree = true;
+        } else {
+            this.isFree = false;
+        }
+    }
+
+    public String toString(){
+        return "\nambulance "+id + " nr of calls "+calls.size();
+    }
 }
